@@ -1,2 +1,4 @@
-Django==3.2.12
-djangorestframework==3.12.4
+Django
+djangorestframework
+psycopg2-binary
+dj-database-url

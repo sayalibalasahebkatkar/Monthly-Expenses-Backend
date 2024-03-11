@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,10 +78,11 @@ WSGI_APPLICATION = 'Monthly_Expenses.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgres://expenses_db_p1gx_user:UzXC1VEb5jtfrc3BXDKEVNnmGjmnvuwm@dpg-cnnl36mn7f5s73anvud0-a.singapore-postgres.render.com/expenses_db_p1gx',
+        conn_max_age=600
+    )
 }
 
 
