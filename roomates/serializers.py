@@ -14,6 +14,13 @@ class TeamSerializer(serializers.ModelSerializer):
         
 
 class TransactionSerializer(serializers.ModelSerializer):
+
+    user_name = serializers.SerializerMethodField()
+
     class Meta:
         model = Transaction
         fields = '__all__'
+    
+    def get_user_name(self,instance):
+         return instance.user.user_id
+    
