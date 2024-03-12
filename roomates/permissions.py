@@ -23,9 +23,11 @@ class IsAuthenticatedAndTeamValid(permissions.BasePermission):
             return False  # No token provided
         try:
             user = Roomate.objects.get(token=token)
-            print(request.query_params.get('team_id'))
             # Optionally, you can store the user in the request for later use
-            team=Team.objects.get(user_id=user.id,id=request.query_params.get('team_id'))
+            team_id = request.query_params.get('team_id')
+            if not team_id:
+                team_id = request.data.get('team_id')
+            team=Team.objects.get(user_id=user.id,id=team_id)
             request.user = user
             return True
         except:

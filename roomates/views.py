@@ -152,7 +152,7 @@ class TransactionViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         if not request.user:
             return Response('User is not authenticated', status=status.HTTP_401_UNAUTHORIZED)     
-        team = request.query_params.get('team_id')
+        team = request.data.get('team_id')
         user = request.user.id
         request.data['user'] = user 
         request.data['team']=team   
